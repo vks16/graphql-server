@@ -17,4 +17,15 @@ model User {
   name String 
   email String @unique
   password String
+  videos Video[]
+}
+
+model Video {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title String
+  thumbnail String 
+  url String @unique
+  uploadedBy User? @relation(fields: [uploadedById], references: [id])
+  uploadedById Int?
 }

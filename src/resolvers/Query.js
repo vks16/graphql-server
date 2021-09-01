@@ -10,8 +10,23 @@ function user(parent, args, context, info) {
     })
 }
 
+
+function videos(parent, args, context, info) {
+    return context.prisma.video.findMany();
+}
+
+function video(parent, args, context, info) {
+    return context.prisma.video.findFirst({
+        $where: {
+            id: args.id
+        }
+    });
+}
+
 module.exports = {
     users,
-    user
+    user,
+    videos,
+    video
 };
 

@@ -43,7 +43,19 @@ async function login(parent, args, context, info) {
     }
 }
 
+async function uploadVideo(parent, args, context, info) {
+    const { userId } = context;
+    
+    return await context.prisma.video.create({
+        data: {
+            ...args,
+            uploadedBy: { connect: {id: userId}}
+        }
+    })
+}
+
 module.exports = {
     signup,
     login,
+    uploadVideo
 }

@@ -27,10 +27,10 @@ const server = new ApolloServer({
             ...req,
             prisma,
             userId:
-                req && req.header.authorization
+                req && req.headers.authorization
                     ? getUserId(req)
                     : null
-        }
+        };
     }
 });
 

@@ -1,20 +1,32 @@
 type Query {
     users: [User]
     user(id: ID!): User
+    videos: [Video]
+    video(id: ID!): Video 
 }
 
 type Mutation {
     signup(email: String!, password: String!, name: String!): AuthPayload
     login(email: String!, password: String!): AuthPayload
+    uploadVideo(title: String!, url: String!, thumbnail: String!): Video
 }
 
 type User {
     id: ID!
     name: String!
     email: String!
+    videos: [Video]
 }
 
 type AuthPayload {
   token: String
   user: User
+}
+
+type Video {
+    id: ID!
+    title: String!
+    url: String!
+    thumbnail: String!
+    uploadedBy: User!
 }
